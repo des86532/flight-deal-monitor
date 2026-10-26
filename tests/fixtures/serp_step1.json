@@ -1,0 +1,10 @@
+{
+  "search_metadata": {"status": "Success"},
+  "best_flights": [
+    {"flights": [{"airline": "EVA Air"}], "price": 11200, "type": "Round trip", "departure_token": "DEP_TOKEN_CHEAP"}
+  ],
+  "other_flights": [
+    {"flights": [{"airline": "Peach"}], "price": 13000, "type": "Round trip", "departure_token": "DEP_TOKEN_OTHER"}
+  ],
+  "price_insights": {"lowest_price": 11200, "price_level": "low", "typical_price_range": [13000, 18000]}
+}

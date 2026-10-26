@@ -1,0 +1,9 @@
+{
+  "search_metadata": {"status": "Success", "google_flights_url": "https://www.google.com/travel/flights?booking=1"},
+  "booking_options": [
+    {"together": {"book_with": "Trip.com", "airline": false, "price": 10900}},
+    {"together": {"book_with": "EVA Air", "airline": true, "price": 11600, "option_title": "Economy"}},
+    {"together": {"book_with": "EVA Air", "airline": true, "price": 11350, "option_title": "Basic"}},
+    {"separate_tickets": true, "together": {"book_with": "Peach, Tigerair", "airline": true, "price": 9800}}
+  ]
+}

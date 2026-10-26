@@ -1,0 +1,9 @@
+{
+  "search_metadata": {"status": "Success"},
+  "best_flights": [
+    {"flights": [{"airline": "EVA Air"}], "price": 11200, "type": "Round trip", "booking_token": "BOOK_TOKEN_CHEAP"}
+  ],
+  "other_flights": [
+    {"flights": [{"airline": "EVA Air"}], "price": 14500, "type": "Round trip", "booking_token": "BOOK_TOKEN_OTHER"}
+  ]
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.neilyang.flightmonitor</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/homebrew/bin/bash</string>
+		<string>__APP__/deploy/macmini/run-logged.sh</string>
+		<string>__ROOT__/logs/bot.log</string>
+		<string>/opt/homebrew/bin/uv</string>
+		<string>run</string>
+		<string>--no-sync</string>
+		<string>flight-monitor</string>
+		<string>bot</string>
+	</array>
+	<key>WorkingDirectory</key>
+	<string>__APP__</string>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/opt/homebrew/bin:/usr/bin:/bin</string>
+		<key>FM_SECRETS</key>
+		<string>__ROOT__/secrets.env</string>
+		<key>FM_DB</key>
+		<string>__ROOT__/data/flight_monitor.db</string>
+		<key>PLAYWRIGHT_BROWSERS_PATH</key>
+		<string>__ROOT__/ms-playwright</string>
+	</dict>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+	<key>ThrottleInterval</key>
+	<integer>30</integer>
+</dict>
+</plist>
