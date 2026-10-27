@@ -13,17 +13,32 @@ from . import db, messages, watches
 from .scanner import ScanState, scanner_loop
 from .settings import Settings
 
-HELP = """機票特價監控
-/watch 目的地 起始日 結束日 天數 — 新增監控
-  例：/watch NRT,KIX 2026-12-01 2027-02-28 4-6
-  整趟行程（出發到回程）都會落在日期範圍內
-/list — 目前的監控
-/top <id> — 該監控最便宜的 5 組
-/stop <id> — 停止監控
-/check <id> — 立即重查該監控的所有組合
-/status — 掃描與額度狀態
+HELP = """✈️ <b>機票特價降價監控小幫手</b>
 
-常用機場代碼：東京成田 NRT、羽田 HND、大阪 KIX、名古屋 NGO、福岡 FUK、札幌 CTS、沖繩 OKA、首爾 ICN、釜山 PUS、曼谷 BKK、新加坡 SIN"""
+<b>💡 快速上手範例（點擊指令可直接複製）：</b>
+• 東京玩 5 天：
+<code>/watch NRT 2026-11-01 2026-11-30 5</code>
+• 東京或大阪彈性 4～6 天：
+<code>/watch NRT,KIX 2026-12-01 2027-01-15 4-6</code>
+• 沖繩度假 4 天：
+<code>/watch OKA 2026-11-10 2026-11-25 4</code>
+
+<b>📖 指令與使用教學：</b>
+• <b>/watch &lt;機場&gt; &lt;起始日&gt; &lt;結束日&gt; &lt;天數&gt;</b> — 新增監控
+  └ 機場代碼可填單一或多個（逗號分隔，例如 <code>NRT,KIX</code>）
+  └ 系統會展開符合區間的所有出發與回程組合，自動定時爬取
+  └ 一旦偵測到顯著降價或歷史低價，會立即發送通知與訂票連結
+• <b>/list</b> — 查看目前所有生效的監控項目與最新最低價
+• <b>/top &lt;編號&gt;</b> — 查看該監控目前最便宜的 5 組日期與航班連結
+• <b>/check &lt;編號&gt;</b> — 立即將該監控插隊優先重查
+• <b>/stop &lt;編號&gt;</b> — 停止並刪除該監控
+• <b>/status</b> — 查看背景爬蟲狀態、待查組合數與 API 額度
+• <b>/help</b> — 再次顯示本教學與範例
+
+<b>🏷 常用機場代碼：</b>
+• <b>日本</b>：東京成田 <code>NRT</code>、羽田 <code>HND</code>、大阪關西 <code>KIX</code>、福岡 <code>FUK</code>、沖繩 <code>OKA</code>、札幌 <code>CTS</code>、名古屋 <code>NGO</code>
+• <b>韓國</b>：首爾仁川 <code>ICN</code>、釜山 <code>PUS</code>
+• <b>東南亞</b>：曼谷 <code>BKK</code>、新加坡 <code>SIN</code>、峴港 <code>DAD</code>"""
 
 
 def _days_text(w: dict) -> str:
@@ -60,7 +75,7 @@ def build_app(s: Settings) -> Application:
         )
 
     async def cmd_help(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
-        await reply(update, HELP)
+        await reply(update, HELP, html=True)
 
     async def cmd_watch(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
         today = date.today()
